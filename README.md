@@ -27,8 +27,7 @@ Game Masters spend hours crafting in-world documents (letters, wanted posters, t
 | Remaining five templates + font/texture bundling | ✅ Complete | Fantasy Wanted Poster, Tavern Menu, Gothic Journal, Newspaper, Telegram; local TTF fonts |
 | Editor UI (genre picker, template selector, live preview) | ✅ Complete | Genre toggle buttons, template thumbnail grid, live preview updates on template change |
 | PNG export & download flow | ✅ Complete | html2canvas capture with font loading, scaling fix, PNG blob download with fallback |
-| Code review | 📋 Planned | |
-| Pre-launch verification | 📋 Planned | |
+| Pre-ship code review | ✅ Complete | Error handling, UX bugs, dead code, CORS safety, friendly error messages |
 | Deploy to production | 📋 Planned | |
 
 ## Who It's For
