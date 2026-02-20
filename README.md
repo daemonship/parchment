@@ -10,6 +10,11 @@ Game Masters spend hours crafting in-world documents (letters, wanted posters, t
 > Found a bug? Have a feature idea? Something feel wrong or missing?
 > **[Open an issue](../../issues)** — every piece of feedback directly shapes what gets built next.
 
+### Recently Addressed
+
+- **Issue #4**: Preview now updates immediately when switching templates (no longer requires typing to trigger refresh)
+- **Issue #5**: Local development instructions added below
+
 ## Status
 
 > 🚧 In active development — not yet production ready
