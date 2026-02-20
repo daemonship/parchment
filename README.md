@@ -18,7 +18,7 @@ Game Masters spend hours crafting in-world documents (letters, wanted posters, t
 |---------|--------|-------|
 | Project scaffold & CI | ✅ Complete | Svelte 5 + Vite + TypeScript, Vercel/Netlify deploy config |
 | Canvas rendering pipeline & first template | ✅ Complete | html2canvas capture utility, Fantasy Medieval Letter template |
-| Remaining five templates + font/texture bundling | 🚧 In Progress | Fantasy Wanted Poster, Tavern Menu, Gothic Journal, Newspaper, Telegram |
+| Remaining five templates + font/texture bundling | ✅ Complete | Fantasy Wanted Poster, Tavern Menu, Gothic Journal, Newspaper, Telegram; local TTF fonts |
 | Editor UI (genre picker, template selector, live preview) | 📋 Planned | |
 | PNG export & download flow | 📋 Planned | |
 | Code review | 📋 Planned | |
@@ -33,7 +33,7 @@ Dungeon Masters (D&D 5e), Game Masters (Call of Cthulhu, Pathfinder, Vampire: th
 
 - **Frontend:** Svelte 5 + TypeScript + Vite
 - **Export:** html2canvas → PNG blob download
-- **Fonts:** IM Fell English (Google Fonts; local woff2 bundling coming in next task)
+- **Fonts:** Local TTF files (IM Fell English, Rye, MedievalSharp, Caveat, Old Standard TT, Special Elite) bundled to avoid CORS issues
 - **Deployment:** Vercel / Netlify ready
 
 ## Local Development
@@ -59,13 +59,18 @@ Requires Node.js 18+. No backend — this is a pure client-side app.
 ```
 src/
 ├── templates/         # One Svelte component per handout style
-│   └── FantasyLetter.svelte
+│   ├── FantasyLetter.svelte
+│   ├── FantasyWantedPoster.svelte
+│   ├── FantasyTavernMenu.svelte
+│   ├── GothicJournalEntry.svelte
+│   ├── GothicNewspaperClipping.svelte
+│   └── GothicTelegram.svelte
 ├── lib/
 │   └── renderer.ts   # html2canvas capture + PNG download utility
 ├── App.svelte         # Editor shell (textarea + live preview + export)
 └── assets/
     ├── textures/      # Background textures by genre (fantasy/, gothic/)
-    └── fonts/         # Bundled woff2 font files (populated in Task 3)
+    └── fonts/         # Bundled TTF font files for html2canvas compatibility
 ```
 
 Each template component:
