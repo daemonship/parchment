@@ -1,5 +1,7 @@
 # Parchment — TTRPG Handout Generator
 
+**Live at: https://daemonship.github.io/parchment/**
+
 > Type your in-world text, pick a template, download a print-ready handout PNG.
 
 Game Masters spend hours crafting in-world documents (letters, wanted posters, tavern menus, journal entries) for tabletop RPGs. Generic template tools lack genre-specific styling. Parchment gives you six styled templates across Fantasy Medieval and Gothic Horror genres — type your text, see a live preview, export a high-resolution PNG.
@@ -18,7 +20,7 @@ Game Masters spend hours crafting in-world documents (letters, wanted posters, t
 
 ## Status
 
-> 🚧 In active development — not yet production ready
+> ✅ Live at https://daemonship.github.io/parchment/
 
 | Feature | Status | Notes |
 |---------|--------|-------|
@@ -28,7 +30,7 @@ Game Masters spend hours crafting in-world documents (letters, wanted posters, t
 | Editor UI (genre picker, template selector, live preview) | ✅ Complete | Genre toggle buttons, template thumbnail grid, live preview updates on template change |
 | PNG export & download flow | ✅ Complete | html2canvas capture with font loading, scaling fix, PNG blob download with fallback |
 | Pre-ship code review | ✅ Complete | Error handling, UX bugs, dead code, CORS safety, friendly error messages |
-| Deploy to production | 📋 Planned | |
+| Deploy to production | ✅ Complete | GitHub Pages — https://daemonship.github.io/parchment/ |
 
 ## Who It's For
 
@@ -39,7 +41,7 @@ Dungeon Masters (D&D 5e), Game Masters (Call of Cthulhu, Pathfinder, Vampire: th
 - **Frontend:** Svelte 5 + TypeScript + Vite
 - **Export:** html2canvas → PNG blob download
 - **Fonts:** Local TTF files (IM Fell English, Rye, MedievalSharp, Caveat, Old Standard TT, Special Elite) bundled to avoid CORS issues
-- **Deployment:** Vercel / Netlify ready
+- **Deployment:** GitHub Pages (Actions CI/CD on push to main)
 
 ## Local Development
 
