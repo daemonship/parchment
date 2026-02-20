@@ -19,7 +19,7 @@ Game Masters spend hours crafting in-world documents (letters, wanted posters, t
 | Project scaffold & CI | ✅ Complete | Svelte 5 + Vite + TypeScript, Vercel/Netlify deploy config |
 | Canvas rendering pipeline & first template | ✅ Complete | html2canvas capture utility, Fantasy Medieval Letter template |
 | Remaining five templates + font/texture bundling | ✅ Complete | Fantasy Wanted Poster, Tavern Menu, Gothic Journal, Newspaper, Telegram; local TTF fonts |
-| Editor UI (genre picker, template selector, live preview) | 📋 Planned | |
+| Editor UI (genre picker, template selector, live preview) | ✅ Complete | Genre toggle buttons, template thumbnail grid, live preview updates on template change |
 | PNG export & download flow | 📋 Planned | |
 | Code review | 📋 Planned | |
 | Pre-launch verification | 📋 Planned | |
