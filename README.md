@@ -12,6 +12,7 @@ Game Masters spend hours crafting in-world documents (letters, wanted posters, t
 
 ### Recently Addressed
 
+- **Issue #1**: PNG export now works with improved download handling and scaling fixes
 - **Issue #4**: Preview now updates immediately when switching templates (no longer requires typing to trigger refresh)
 - **Issue #5**: Local development instructions added below
 
@@ -25,7 +26,7 @@ Game Masters spend hours crafting in-world documents (letters, wanted posters, t
 | Canvas rendering pipeline & first template | ✅ Complete | html2canvas capture utility, Fantasy Medieval Letter template |
 | Remaining five templates + font/texture bundling | ✅ Complete | Fantasy Wanted Poster, Tavern Menu, Gothic Journal, Newspaper, Telegram; local TTF fonts |
 | Editor UI (genre picker, template selector, live preview) | ✅ Complete | Genre toggle buttons, template thumbnail grid, live preview updates on template change |
-| PNG export & download flow | 📋 Planned | |
+| PNG export & download flow | ✅ Complete | html2canvas capture with font loading, scaling fix, PNG blob download with fallback |
 | Code review | 📋 Planned | |
 | Pre-launch verification | 📋 Planned | |
 | Deploy to production | 📋 Planned | |
