@@ -1,3 +1,46 @@
+/* Bundled fonts for templates - local files to avoid CORS issues with html2canvas */
+@font-face {
+  font-family: 'IM Fell English';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/src/assets/fonts/IMFellEnglish-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Rye';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/src/assets/fonts/Rye-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'MedievalSharp';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/src/assets/fonts/MedievalSharp-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Caveat';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/src/assets/fonts/Caveat-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Old Standard TT';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/src/assets/fonts/OldStandardTT-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Special Elite';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/src/assets/fonts/SpecialElite-Regular.ttf') format('truetype');
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
