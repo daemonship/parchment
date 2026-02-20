@@ -21,7 +21,6 @@
     id: TemplateId;
     name: string;
     genre: Genre;
-    component: any;
     defaultText: string;
   }
 
@@ -30,7 +29,6 @@
       id: 'fantasy-letter',
       name: 'Fantasy Letter',
       genre: 'fantasy',
-      component: FantasyLetter,
       defaultText: `My dearest and most honoured companion,
 
 I write to thee in the shadow of great urgency, for the matter which hath brought me to this forsaken crossroads brook no further delay. The eastern road is not safe — the brigands of the Thornwood have grown bold since the garrison withdrew, and three merchants were set upon not a fortnight past.
@@ -45,7 +43,6 @@ Until we meet again, I remain thy faithful ally.`
       id: 'fantasy-wanted',
       name: 'Wanted Poster',
       genre: 'fantasy',
-      component: FantasyWantedPoster,
       defaultText: `The individual known as "Blackjack" Malloy is wanted for crimes including highway robbery, assault on a crown official, and the theft of the Earl's signet ring.
 
 Male human, approximately 30 years of age, 5'11" in height, with dark hair cut short and a distinctive scar running from left temple to jawline. Often wears a leather jerkin and carries a shortsword with a bird's-head pommel. Speaks with a common northern accent.
@@ -56,7 +53,6 @@ May be armed and dangerous. Approach with caution.`
       id: 'fantasy-tavern',
       name: 'Tavern Menu',
       genre: 'fantasy',
-      component: FantasyTavernMenu,
       defaultText: `THE CROSSed KEYS
 ~ Purveyor of Fine Fare & Drink ~
 
@@ -82,7 +78,6 @@ Mead ............................ 4 cp
       id: 'gothic-journal',
       name: 'Journal Entry',
       genre: 'gothic',
-      component: GothicJournalEntry,
       defaultText: `October the 24th, 1892
 
 The nightmares have returned. Each night now I see the same vision — a great house upon a cliff, its windows like eyes watching me, and the sound of the sea crashing against rocks below. I wake screaming, drenched in cold sweat.
@@ -97,7 +92,6 @@ If I do not return, burn this journal.`
       id: 'gothic-newspaper',
       name: 'Newspaper Clipping',
       genre: 'gothic',
-      component: GothicNewspaperClipping,
       defaultText: `MYSTERIOUS DISAPPEARANCE AT BLACKWOOD MANOR
 
 Local authorities are investigating the strange disappearance of Mr. Jonathan Harrowe, last seen on the evening of October 24th. Mr. Harrowe, a gentleman of some means, had recently taken up residence at the infamous Blackwood Manor, a property with a dark and troubled history.
@@ -112,7 +106,6 @@ Anyone with information regarding Mr. Harrowe's whereabouts is urged to contact 
       id: 'gothic-telegram',
       name: 'Telegram',
       genre: 'gothic',
-      component: GothicTelegram,
       defaultText: `URGENT — STOP
 
 DO NOT TRAVEL TO BLACKWOOD MANOR — STOP
@@ -150,10 +143,10 @@ WIRE IMMEDIATELY UPON RECEIPT — STOP`
     text = template.defaultText;
   }
 
-  // Handle genre toggle
-  function toggleGenre() {
-    selectedGenre = selectedGenre === 'fantasy' ? 'gothic' : 'fantasy';
-    // Select first template of new genre
+  // Handle genre selection
+  function selectGenre(genre: Genre) {
+    if (genre === selectedGenre) return;
+    selectedGenre = genre;
     const firstInGenre = templates.find(t => t.genre === selectedGenre);
     if (firstInGenre) {
       selectTemplate(firstInGenre);
@@ -161,7 +154,10 @@ WIRE IMMEDIATELY UPON RECEIPT — STOP`
   }
 
   async function handleExport() {
-    if (!templateRef) return;
+    if (!templateRef) {
+      exportError = 'Template not ready. Please wait a moment and try again.';
+      return;
+    }
     exporting = true;
     exportError = '';
     
@@ -195,8 +191,8 @@ WIRE IMMEDIATELY UPON RECEIPT — STOP`
     try {
       await downloadHandout(templateRef, `${selectedTemplate.id}-handout.png`);
     } catch (err) {
-      exportError = err instanceof Error ? err.message : 'Export failed';
       console.error('Export error:', err);
+      exportError = 'Export failed. Please try again. If the problem persists, try a different browser.';
     } finally {
       // Restore original styles
       if (previewInner && previewInner.classList.contains('preview-inner')) {
@@ -226,14 +222,14 @@ WIRE IMMEDIATELY UPON RECEIPT — STOP`
         <button
           class="genre-btn"
           class:selected={selectedGenre === 'fantasy'}
-          onclick={() => toggleGenre()}
+          onclick={() => selectGenre('fantasy')}
         >
           Fantasy Medieval
         </button>
         <button
           class="genre-btn"
           class:selected={selectedGenre === 'gothic'}
-          onclick={() => toggleGenre()}
+          onclick={() => selectGenre('gothic')}
         >
           Gothic Horror
         </button>
@@ -275,6 +271,9 @@ WIRE IMMEDIATELY UPON RECEIPT — STOP`
         >
           {exporting ? 'Rendering…' : 'Export PNG'}
         </button>
+        {#if selectedTemplate.id === 'gothic-newspaper'}
+          <p class="export-caveat">Note: multi-column layout may render as a single column in the exported PNG.</p>
+        {/if}
         {#if exportError}
           <p class="export-error">{exportError}</p>
         {/if}
@@ -482,6 +481,12 @@ WIRE IMMEDIATELY UPON RECEIPT — STOP`
   .export-btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+
+  .export-caveat {
+    font-size: 0.75rem;
+    color: #8a7050;
+    margin: 0;
   }
 
   .export-error {
