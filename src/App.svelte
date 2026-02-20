@@ -164,11 +164,50 @@ WIRE IMMEDIATELY UPON RECEIPT — STOP`
     if (!templateRef) return;
     exporting = true;
     exportError = '';
+    
+    // Get the preview inner element (parent of templateRef)
+    const previewInner = templateRef.parentElement;
+    let originalTransform = '';
+    let originalPosition = '';
+    let originalTop = '';
+    let originalLeft = '';
+    let originalWidth = '';
+    let originalHeight = '';
+    let originalZIndex = '';
+    if (previewInner && previewInner.classList.contains('preview-inner')) {
+      originalTransform = previewInner.style.transform;
+      originalPosition = previewInner.style.position;
+      originalTop = previewInner.style.top;
+      originalLeft = previewInner.style.left;
+      originalWidth = previewInner.style.width;
+      originalHeight = previewInner.style.height;
+      originalZIndex = previewInner.style.zIndex;
+      // Move the element to fixed position, full size, no scaling, ensure visibility
+      previewInner.style.transform = 'none';
+      previewInner.style.position = 'fixed';
+      previewInner.style.top = '0';
+      previewInner.style.left = '0';
+      previewInner.style.width = '650px';
+      previewInner.style.height = '900px';
+      previewInner.style.zIndex = '9999';
+    }
+    
     try {
       await downloadHandout(templateRef, `${selectedTemplate.id}-handout.png`);
     } catch (err) {
       exportError = err instanceof Error ? err.message : 'Export failed';
+      console.error('Export error:', err);
     } finally {
+      // Restore original styles
+      if (previewInner && previewInner.classList.contains('preview-inner')) {
+        previewInner.style.transform = originalTransform;
+        previewInner.style.position = originalPosition;
+        previewInner.style.top = originalTop;
+        previewInner.style.left = originalLeft;
+        previewInner.style.width = originalWidth;
+        previewInner.style.height = originalHeight;
+        previewInner.style.zIndex = originalZIndex;
+      }
       exporting = false;
     }
   }
